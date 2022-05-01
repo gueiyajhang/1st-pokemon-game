@@ -2,7 +2,7 @@
 
 #### Video Demo:  <https://youtu.be/tvwTLzRrv3A>
 #### Description:
-![pokemon game img](https//imgur.com/a/paoll2W.png)
+![pokemon game img](https//imgur.com/a/paoll2W)
 
   
 TODO
