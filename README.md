@@ -1,7 +1,11 @@
 # 1st-pokemon-game
-include battle field
+
+#### Video Demo:  <https://youtu.be/tvwTLzRrv3A>
+#### Description:
 
 <blockquote class="imgur-embed-pub" lang="en" data-id="a/paoll2W"  ><a href="//imgur.com/a/paoll2W">pokemon game img</a>
-
   
-[![youtube link]([img]https://imgur.com/a/paoll2W)](https://youtu.be/tvwTLzRrv3A "youtube link")
+TODO
+  
+Pokemon style RPG game include battle field
+  
