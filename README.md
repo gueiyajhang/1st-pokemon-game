@@ -15,4 +15,5 @@ progrgram language: javascript, CSS, html
 1. build a World map via Tiled
   use png img dataset drawing the island which your main avatar will travel
   ![island img](./img/Pellettown.png)
-2. 
+2. reference the map at html
+3. 
