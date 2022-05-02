@@ -3,8 +3,7 @@
 #### Video Demo:  <https://youtu.be/tvwTLzRrv3A>
 #### Description:
 ![pokemon game img](./img/pokemongame.png)
-<img src="./img/instruction.png" alt="instruction img" width="200"/>
-![instruction img](./img/instruction.png = 200x100)
+<img src="./img/instruction.png" alt="instruction img" width="400"/>
 Main task:
 Pokemon style RPG game include battle field, audio, pokemon, avatar
 
