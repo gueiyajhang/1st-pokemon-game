@@ -4,7 +4,7 @@
 #### Description:
 ![pokemon game img](./img/pokemongame.png)
 
-![instruction img](./img/instruction.png = 200*100)
+![instruction img](./img/instruction.png = 200x100)
 Main task:
 Pokemon style RPG game include battle field, audio, pokemon, avatar
 
