@@ -15,13 +15,14 @@ progrgram language: javascript, CSS, html
 #### TODO
 ###### step I - main island map
 1. build a World map via Tiled
-  use png img dataset drawing the island which your main avatar will travel
+  - use png img dataset drawing the island which your main avatar will travel
   ![island img](./img/Pellettown.png)
 2. reference the map at html
-  build canvas element to create an rectangle area where the game will display under budy section at index.html and rectangle information and method are wrtiien under index.js
+  - build canvas element to create an rectangle area where the game will display under budy section at index.html and rectangle information and method are wrtiien under index.js
   
   
 3. import the avatar
+  -  
 
 4. move avatar through map
 
