@@ -18,10 +18,12 @@ progrgram language: javascript, CSS, html
   - use png img dataset drawing the island which your main avatar will travel
   ![island img](./img/Pellettown.png)
 2. reference the map at html
-  - build canvas element to create an rectangle area where the game will display under budy section at index.html and rectangle information and method are wrtiien under index.js
-  
+  - build canvas element to create an rectangle area where the game will display under budy section at index.html and rectangle information and method are writen under index.js
+  note: use onload methods so the map loading will not too slow to show
   
 3. import the avatar
+  - use onload methods insert avatar before map
+  - move the avatar into the center of the map
   -  
 
 4. move avatar through map
