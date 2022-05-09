@@ -24,11 +24,16 @@ progrgram language: javascript, CSS, html
 3. import the avatar
   - use onload methods insert avatar before map
   - move the avatar into the center of the map
-  -  
 
 4. move avatar through map
+ - addEventListener assign specific keydown of each move: WASD
+ - add animation loop, cropping image at each move
+ - class Sprite add constructor method inside to reference propertity of the avatar: position, velocity, image
+ - add background.draw()
+ - const keys reference pressed on WASD is False at the beginning, while is True at pressed down (keyup should be False)
 
 5. boundary restrict avatar moves at the island
+ - 
 
 6. foreground layer setup
 
