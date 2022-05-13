@@ -33,7 +33,9 @@ progrgram language: javascript, CSS, html
  - const keys reference pressed on WASD is False at the beginning, while is True at pressed down (keyup should be False)
 
 5. boundary restrict avatar moves at the island
- - 
+ - reference the boundaries by x, y and with value of 1025
+ - draw boundaries with same offset as to background
+ - set movables for background and boundaries 
 
 6. foreground layer setup
 
