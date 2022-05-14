@@ -72,6 +72,8 @@ progrgram language: javascript, CSS, html
   - under key pressed condition, set moving = True for all direction
   - add sprites under class Sprite and assign sprites
   - under const player assign 4 directions of img and reference each img
+  - swape avatar direction by key down: under key down condition assign player.image = player.sprites.up (or other direction)
+  
 ###### step II - battle field scene
 8. build battle field scene
 9. transit from island to battle field
