@@ -76,16 +76,18 @@ progrgram language: javascript, CSS, html
   
 ###### step II - battle field scene
 8. build battle field scene
-9. transit from island to battle field
-10. add battle spprites
-11. add attack bar
-12. add health bar
-13. attacks effect
-14. queue dialogue
-15. randomized attacks
-16. display attack type
-17. battle end
-18. transit back to island
+ - import battleZones.js
+ - copy const collisionsMap and modify into const battleZonesMap 
+10. transit from island to battle field
+11. add battle spprites
+12. add attack bar
+13. add health bar
+14. attacks effect
+15. queue dialogue
+16. randomized attacks
+17. display attack type
+18. battle end
+19. transit back to island
 
 ###### step III = sound effect
 19. music and sound effect
