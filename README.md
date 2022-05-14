@@ -36,6 +36,14 @@ progrgram language: javascript, CSS, html
  - reference the boundaries by x, y and with value of 1025
  - draw boundaries with same offset as to background
  - set movables for background and boundaries 
+ - define if avatar X position + avatar width >= biundaries then colliding
+ - under class, use onload finction define avatar image equals to this.image then onload this.width = this.image / this.frames.max
+ - same as the other side, add && in if condition: X position <= biundaries + avatar width then colliding
+ - add && statement to y direction
+ - change if statement to rectangularCollision function and defeine rectangular1 to avatar, rectangular2 to collision map
+ - at movables add ... before boundaries means all the items under boundaries plays with movables
+ - under function animate, looping boundary in boundaries.forEach so that avatar collides when toching all the boundaries
+ - 
 
 6. foreground layer setup
 
