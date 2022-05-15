@@ -122,18 +122,68 @@ set const battle = {
  - create a div under html for a large black area for the transit into battle field
  - import gsap library to use animation for new scene
 ```
-# after battle initiated, start animation
+// after battle initiated, start animation
 gsap.to('#overlappingDiv', {
   opacity: 1,
   repeat: 3,
   yoyo: true,
-  duration: 0.4
+  duration: 0.4,
+  onComplete() {
+    gsap.to('#overlappinfDiv', {
+      opacity: 1,
+      duration: 0.4
+    })
+    // activte a new animation
+    animateBattle()
+    // deactivate current animation
+  }
+})
+```
+ - set animationId to count each frame over time
+ - replace cancelAnimationFrame(animationId) right after activate battle
+ - create new function 
+ ```
+ animateBattle() {
+  window.requestAnimationFrame(animateBattle)
+ }
+ ```
+  - reference battleBackgroundImage.png
+  - draw battleBackgroundImage
+  - replace animateBattle function right after onComplete gsap animation
+```
+// after battle initiated, start animation
+battle.imitiated = true
+gsap.to('#overlappingDiv', {
+  opacity: 1,
+  repeat: 3,
+  yoyo: true,
+  duration: 0.4,
+  onComplete() {
+    gsap.to('#overlappinfDiv', {
+      opacity: 1,
+      duration: 0.4,
+      onComplete() {
+        animateBattle()
+        gsap.to('#overlappingDiv', {
+          opacity: 1,
+          duration: 0.4
+        })
+      }
+    })
+  }
 })
 ```
 10. add battle spprites
-
+ - under index.js create new 2 sprite and reference them with position, frames
+ - under function animateBattle draw 2 sprites
+ - change moving to animate and set default = false, meaning if animate = false then moving
+ - same code add another sprite
 11. add attack bar
-
+ - under html div create a rectangle with bottom position: 0
+ - add div set attack name as botton
+ - add div as attack type
+ - add h1 with margin: 0
+ - adjust position by adding style propertity
 12. add health bar
 
 13. attacks effect
@@ -144,9 +194,9 @@ gsap.to('#overlappingDiv', {
 
 16. display attack type
 
-17 battle end
+17. battle end
 
-18 transit back to island
+18. transit back to island
 
 ###### step III = sound effect
 19. music and sound effect
