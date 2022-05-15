@@ -78,16 +78,75 @@ progrgram language: javascript, CSS, html
 8. build battle field scene
  - import battleZones.js
  - copy const collisionsMap and modify into const battleZonesMap 
-10. transit from island to battle field
-11. add battle spprites
-12. add attack bar
-13. add health bar
-14. attacks effect
-15. queue dialogue
-16. randomized attacks
-17. display attack type
-18. battle end
-19. transit back to island
+ - copy const boundary for each symbols as 1025 is set as battlezones
+ - under animate function, draw battlezones so that the battlezone area shows
+ - set battlezones into movables so that the battlezones will not move with avatar
+ - trigger battles while moving in the battlezone area: same as collision with touching at boundaries
+ - copy if colliding condition when pressing key down, detect player and battlezone
+ - add
+```
+if (keys.w.pressed || keys.a.pressed || keys.s.pressed || keys.d.pressed) {
+  for (let i = 0; i < battleZones.length; i++) {
+  const battleZone = battleZones[i]
+  if (
+    rectanglualCollision({
+      rectangle1: player,
+      rectangle2: battleZone
+    })
+  ) {
+    break
+    }
+  }
+}
+```
+ - add if touching area interception is greater than 1/4 of the avatar area, the avatar can activate a battle
+```
+const overlappingArea = 
+  (Math.min(player.position.x + player.width, battleZone.posiiton.x + battleZone.width) - Math.max(player.position.x,   battleZone.position.x)) * (Math.min(player.position.y + player.height, battleZone.position.y + battleZone.height) - Math.max(player.position.y, battleZone.position.y))
+
+overlappingArea > (player.width * player.height) / 2
+```
+ - add random let battle happens by chance
+```
+Math.random() < 0.1
+```
+9. transit from island to battle field
+ - add before if pressed down condition: if (battle.initiated) return and in the if condition battle.initiated is true while battle triggers
+ - set const battle
+```
+set const battle = {
+  initiated: false
+}
+```
+ - change the moving sonst before if pressed down condition so that avatar will not moving after battle triggers
+ - create a div under html for a large black area for the transit into battle field
+ - import gsap library to use animation for new scene
+```
+# after battle initiated, start animation
+gsap.to('#overlappingDiv', {
+  opacity: 1,
+  repeat: 3,
+  yoyo: true,
+  duration: 0.4
+})
+```
+10. add battle spprites
+
+11. add attack bar
+
+12. add health bar
+
+13. attacks effect
+
+14. queue dialogue
+
+15. randomized attacks
+
+16. display attack type
+
+17 battle end
+
+18 transit back to island
 
 ###### step III = sound effect
 19. music and sound effect
