@@ -183,11 +183,66 @@ gsap.to('#overlappingDiv', {
  - add div set attack name as botton
  - add div as attack type
  - add h1 with margin: 0
- - adjust position by adding style propertity
+ - adjust position and add border by adding style property
+ - seperate section of attack buttons by adding property under html div 
+ ```
+ style="display: grid-template-columns: repeat(2, 1fr);"
+ ```
+  - under style hover attack botton and change background color: #aaa ~ #000 (color range: white --> dark)
+  - google fonts: fonts.google.com --> select press start --> copy the code and place it at body before style tag
+  - add property of font to all the tags: * {font-family: 'Press Srart 2P'}
 12. add health bar
-
+  - draw 2 rectangle to each sprite under html by adding new div
+  - create new div to add a new rectangle under rectangle div to create a health bar in the rectangle
+  - create a same rectangle on top of the small rectangle and set color to green to show the health
+  - set green health bar absolute position and top = 0, big rectangle relative position
+  - add left:0, right:0 for green health bar, remove margin-top property let the green bar on top of the health bar
+  - copy same code for another sprite
 13. attacks effect
-
+  - change attack name under html
+  - add window.eventListener under animateBattle() on click on pecific botton
+```
+document.querySelectorAll('botton').forEach(button => {
+  button.addEventListener('click', () => {
+    //attack data add here
+  })
+})
+```
+  - add argument of the sprite:
+```
+sprite1.attack({
+  attack: {
+    name: 'Tackle',
+    damage: 10,
+    type: 'Normal'
+    }
+  recipient: sprite2
+```
+  - under classes.js create a attack method with attack and recipient argument
+  - add animate when recipient recive attack, use gsap.to(this.position, {x: this.position.x - 20})
+  - create a timeline oject makes attack and recipient moves abck and forth then back to original position
+```
+attack({ attack, recipient }) {
+  const tl = gsap.timeline()
+  tl.to(this.position, {
+  this.position.x - 20})
+  .to(this.position, {
+    x:this.position.x + 40, 
+    duration: 0.1, 
+    onComplete() {
+      gsap.to(recipient.position, {
+        x; recipient.position.x + 10, 
+        yoyo: true, 
+        repeat: 5, 
+        duration:0.08
+      })
+      gsap.to(recipient, {
+        opacity:0
+      })
+   }
+}).to(this.position, {this.position.x }))
+}
+```
 14. queue dialogue
 
 15. randomized attacks
