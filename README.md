@@ -306,9 +306,28 @@ switch(attack.name) {
   break
 }
 ```
-  - add const renderSprites =[] before animateBattle finction
-  - 
-
+  - add const renderSprites =[] before animateBattle finction then add renderSprite into argument
+  - under attack add argument renderSprite then add under switch add renderSprite.push(Fireball)
+  - add animation of Fireball:
+```
+  image: fireballImage,
+  Frames: {
+  max: 4,
+  hold: 10},
+  animate: true
+```
+  - make fireball move:
+ ```
+ gsap.to(fireball.position, {
+  x: recipient.position.x,
+  y: recipient.position.y,
+  onCopmlete: () => {
+    // copy and add loop where recipient gets hit 
+    renderSprites.pop()
+ }
+ })
+ ```
+   - render Sprites
 14. queue dialogue
 
 15. randomized attacks
