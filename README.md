@@ -199,6 +199,7 @@ gsap.to('#overlappingDiv', {
   - add left:0, right:0 for green health bar, remove margin-top property let the green bar on top of the health bar
   - copy same code for another sprite
 13. attacks effect
+##### tackle effect
   - change attack name under html
   - add window.eventListener under animateBattle() on click on pecific botton
 ```
@@ -224,23 +225,73 @@ sprite1.attack({
 ```
 attack({ attack, recipient }) {
   const tl = gsap.timeline()
+  this.health -= attack.damage
   tl.to(this.position, {
   this.position.x - 20})
   .to(this.position, {
     x:this.position.x + 40, 
     duration: 0.1, 
-    onComplete() {
+    onComplete() => {
+      // Enemy actually gets hit
+      gsap.to('enemyHealthBar', {
+        width: this.health - attack.damage + '%'
+      })
       gsap.to(recipient.position, {
         x; recipient.position.x + 10, 
         yoyo: true, 
         repeat: 5, 
-        duration:0.08
+        duration: 0.08
       })
       gsap.to(recipient, {
-        opacity:0
+        opacity: 0,
+        repeat: 5,
+        yoyo: true,
+        duration: 0.08
       })
    }
 }).to(this.position, {this.position.x }))
+}
+```
+  - makes recipient fades out at the end:
+    under classes.js at sprite property add opacity property as 1 by default, then after draw() add c.save() & c.globalAlpha = this.opacity
+  - decrease green health bar after attack:
+    under div section add id="enemyHealthBar" , this.health = 100
+  - create let MovementDistance = 20
+  - if (this.isEnemy) movmentDistance = -20
+  - add isEnemy property under class Sprite and replace 20 in this.position to movementDistance
+  - add isEnemy property under enemy sprite property
+  - at div add playerHealthBar id and animate playerHealthBar as well
+#### fireball effect
+  - change botton name to Fireball
+  - separate attacks to add different attack animate effect: under animateBattle() add button.addEventListener
+```
+animateBattle()
+document.querySelectorAll('bitton').forEach((button) => {
+  button.addEventListen('click', (e) => {
+      const selectedAttack = attacks(e.currentTarget.innerHTML)
+    }
+  })
+})
+```
+  - create new file: attacks.js, place const attacks data into and at index.html references attacks.js
+```
+const attacks = {
+  Tackle: {
+    name: 'Tackle',
+    damage: 10,
+    type: 'Normal'
+  },
+  Fireball: {
+    name: 'Fireball',
+    damage: 20,
+    type: 'Fire'
+  } 
+}
+```
+  - at classes.js under attack argument add switch method
+```
+switch(attack.name) {
+  
 }
 ```
 14. queue dialogue
