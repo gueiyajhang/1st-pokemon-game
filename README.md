@@ -291,9 +291,24 @@ const attacks = {
   - at classes.js under attack argument add switch method
 ```
 switch(attack.name) {
-  
+  case 'Fireball':
+    const fireball = new Sprite({
+    fireballImage.src = './img/Fireball.png'
+      position: {
+        x: this.position.x,
+        y: this.position.y,
+      }
+    })
+  // paste all the animation here
+  break
+  case 'Tackle':
+  // paste all the animation here
+  break
 }
 ```
+  - add const renderSprites =[] before animateBattle finction
+  - 
+
 14. queue dialogue
 
 15. randomized attacks
