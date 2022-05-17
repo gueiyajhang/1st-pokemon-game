@@ -323,11 +323,26 @@ switch(attack.name) {
   y: recipient.position.y,
   onCopmlete: () => {
     // copy and add loop where recipient gets hit 
-    renderSprites.pop()
+   
  }
  })
  ```
    - render Sprites
+   - add rotation of fireball
+```
+  - make fireball before enemy
+```
+renderSprites.splice(1, 0, fireball)
+```
+
+c.translate(this.position.x + this.width / 2, this.position.y + this.height / 2)
+c.rotate(this.rotation)
+```
+  - under attack
+```
+let attack = 1
+if (this.isEnemy) rotation = -1
+```
 14. queue dialogue
 
 15. randomized attacks
