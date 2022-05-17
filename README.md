@@ -344,8 +344,84 @@ let attack = 1
 if (this.isEnemy) rotation = -1
 ```
 14. queue dialogue
+  - create a div section under the container of attacks to build a new container for dialog
+  - add style = "position: absolute; top: 0; right: 0; bottom: 0; left: 0; background-color: white;" to make dialog overlap with attack botton
+  - under attack add document set default block 
+```
+document.querySelector('#dialogueBox').style.display = 'block'
+```
+  - class Sprite add name so that im the dialogue name can be referenced
+```
+document.querySelector('#dialogueBox').innerHTML = this.name + ' used ' + attack.name
+```
+  - at index.js find const Sprite1 & Sprite2 add name argument so that this.name can be defined
+  - add queue to set random attack and close dialogue when queue is empty
+```
+const queue = []
+botton.addEventLinstener('click', (e) => {
 
+queue.push(() => {
+  Sprite2.attack({
+    attack: attacks.Sptites2,
+    recipient: Sprite1,
+    renderedSprites
+  })
+})
+})
+```
+  - call queue function & when queue is empty close the dialog when quit
+```
+document.querySelector('#dialogueBox').addEventListener('click', (e) => {
+  if (queue.length > 0) {
+    queue[0]()
+    queue.shift()
+  } else e.currentTarget.style.display = 'none'
+})
+```
 15. randomized attacks
+  - add id='attacksBox' and delete attack bottons, then at battleScene.js add 
+```
+const botton = document.createElement('botton')
+botton.innerHTML'Fireball'
+doocument.querySelector('#attacksBox').append(botton)
+```
+  - create monsters.js put Sprites and reference into
+  - reference monsters.js after attacks.js at index.html
+  - add class Monster extend Sprite{} include the whole attacks method
+```
+class Monster extend Sprite{
+ constructor({
+  position,
+  velocity,
+  image,
+  frames: { max:1, hold:10 },
+  sprites,
+  animate: false,
+  rotation: 0,
+  isEnemy: false,
+  name,
+  attacks
+ }) {
+  super({
+    position,
+    velocity,
+    image,
+    frames,
+    sprites,
+    animate,
+    rotation
+  })
+  this.health = 100
+  this.isEnemy = isEnemy
+  this.name = name
+  this.attacks = attacks
+ }
+}
+```
+  - at battleScene.js add
+```
+
+```
 
 16. display attack type
 
