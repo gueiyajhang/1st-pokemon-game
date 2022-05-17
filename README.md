@@ -420,7 +420,9 @@ class Monster extend Sprite{
 ```
   - at battleScene.js add
 ```
-
+Sprite1.attacks.forEach(attack => {
+  // paste 
+})
 ```
 
 16. display attack type
