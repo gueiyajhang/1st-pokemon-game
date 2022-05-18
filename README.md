@@ -618,3 +618,9 @@ const monsters = {
   - add battle.initiated = false under gasp.to('#overlappingDiv')
 ###### step III = sound effect
 20. music and sound effect
+  - import audio file under audio forder and at index.html reference audio.js at first
+  - reference CDN of Holwe js CDN 2.2.3
+  - at audio.js reference audio
+  - at the end of index.js  let clicked = false then add eventListener play music when not click and clicked = true
+  - after cancel animationframe stop playing audio by audio.Map.stop() then audio.initBattle.play() & audio.battle.play()
+  - assign audio right before each pecific action
