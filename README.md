@@ -378,7 +378,7 @@ document.querySelector('#dialogueBox').addEventListener('click', (e) => {
   } else e.currentTarget.style.display = 'none'
 })
 ```
-15. randomized attacks
+15. populating attacks
   - add id='attacksBox' and delete attack bottons, then at battleScene.js add 
 ```
 const botton = document.createElement('botton')
@@ -418,7 +418,6 @@ class Monster extend Sprite{
  }
 }
 ```
-16. populating attacks
   - at classes.js change class Sprites to  class Monster and adding attacks property 
   - at battleScene.js populating attacks by adding:
 ```
@@ -429,12 +428,193 @@ Sprite1.attacks.forEach(attack => {
   document.querySelector('#attacksBox').append(button)
 })
 ```
+16. randomized attacks from enemy
+  - at battleScene.js before queue method add Sprites2.attacks[] array and use Math.floor to round decimal down sprite2.attacks.length as integer
+```
+const randomAttack = sprites2.attacks[Math.floor(Math.random() * sprites2.attacks.length)]
 
-16. display attack type
+queue.push(() => {
+  draggle.attack({
+    attack: randomAttack,
+    recipient: sprite1,
+    renderedSprites
+  })
+})
+```
+  - at monsters.js at Sprites2 attacks add attacks.Fireball
+17. display attack type
+  - at battleScene under queue method looping over button function
+```
+button.addEventListener('mouseenter', (e) => {
+  const  selectedAttack = attacks[e.currentTarget.innerHTML]
+})
+```
+  - at index.html in Attack Type add id="attackType"
+  - at battleScene add document assign attacktype from attacks.type
+```
+button.addEventListener('mouseenter', (e) => {
+  const  selectedAttack = attacks[e.currentTarget.innerHTML]
+  document.querySelector('#attackType').innerHTML = selectedAttack.type
+})
+```
+  - at attacks.js add font property on attack type by adding color: 'black' or 'red'
+```
+button.addEventListener('mouseenter', (e) => {
+  const  selectedAttack = attacks[e.currentTarget.innerHTML]
+  document.querySelector('#attackType').innerHTML = selectedAttack.type
+  document.querySelector('#attackType').style.color = selectedAttack.color
+})
+```
+18. battle end
+  - at battleScene.js add if statement
+```
+if (sprites2.health <= 0) {
+  queue.push(() => {
+  sprite.faint()
+  })
+  return
+}
+```
+  - add faint() method to classes.js
+```
+faint() {
+  document.quertSelector('#dialogueBox').innerHTML = 
+  this.name + ' fainted!'
+  gsap.to(this.position, {
+    y: this,position.y + 20
+  })
+  gsap.to(this.position, {
+    opacity: 0
+  })
+}
+```
+  - change this.health to recipient.health to reference recipient health once reference health equals 0 then recipient is fainted
+  - at battleScene.js under queue.push add if statement after sprite2.attack
+```
+queue.push(() => {
+  sprtie2.attack({
+    attack: randomAttack,
+    recipient: sprite1,
+    renderedSprites
+  })
+  if (sprite1.health <= 0) {
+    queue.push(() => {
+      sprite1.faint()
+    })
+  }
+})
+```
+19. transit back to island
+  - at battleScene.js under if health<=0 statement beneath faint()
+ ```
+ if (sprite.health <= 0 {
+  queue.push(() => {
+    sprite2.faint()
+  })
+  queue.push(() => {
+    // fade back to black
+    gsap.to('#overlappingDiv', {
+      opacity: 1
+    })
+  })
+ })
+ ```
+  - at index.html in #overlappinDiv add style property z-index: 10
+  - cancel battleScene then go back to map
 
-17. battle end
+```
+// before animantionBattle function
+let battleAnimationId
 
-18. transit back to island
+function animationBattle() {
+  battleAnimationId = window.requestAnimationFrame(animateBattle)
+  battleBackground.draw()
+}
+```
+```
+ if (sprite.health <= 0 {
+  queue.push(() => {
+    sprite2.faint()
+  })
+  queue.push(() => {
+    // fade back to black
+    gsap.to('#overlappingDiv', {
+      opacity: 1,
+      onComplete: () => {
+        cancelAnimationFrame(battleAnimationId)
+        animate()
+        document.querySelector('#userInterface').style.display = none
+        
+        gsap.to('#overlappingDiv', {
+          opacity: 0
+        })
+      }
+    })
+  })
+ })
+```
+  - at index.html add new Div with id="userinterface" then include all the rectangles at the battle scene
+  - re-initialized battle scene, above animateBattle function add function initBattle()
+```
+// change const into let
+let sprite2
+let sprite1 
+let renderedSprites
+let queue
 
+function initBattle() {
+  sprite2 = new Monster(monsters.sprtie2)
+  sprite1 =new Monster(monsters.sprtie1)
+  renderedSprites = [sprite2, sprite1]
+  queue = []
+  // copy and paste the whole attacks
+}
+```
+  - before animateBattle() add initBattle()
+  - at battleScene.js under initBattle function add
+```
+document.querySelector('#userInterface').style.display = 'block'
+document.querySelector('#dialogueBox').style.display = 'none'
+document.querySelector('#enemyHealthBar').style.width = '100%'
+document.querySelector('#playerHealthBar').style.width = '100%'
+document.querySelector('#attacksBos').replaceChildren()
+```
+  - at classes.js under class Sprite add this.image.src = this.image.src
+```
+class Sprite {
+  constructor({
+  
+  }) {
+  this.position = position
+  this.image = new Image()
+  this.frames = { ...frames, val:0, elapsed: 0}
+  this.image.onload = () => {
+    this.width = this.image.width / this.frames.max
+    this.height = this.image.height
+  }
+  this.image.src = image.src
+  this.animate = animate
+  this.sprites = sprites
+  this.opacity = 1
+  this.rotation = rotation
+}
+```
+  - at monsters.js set const monsters image as an object
+```
+const monsters = {
+  Sprite1: {
+    image: {
+      src: './img/sprite1.png'  
+    }
+  },
+  Sprite2: {
+    image: {
+      src: './img/sprite2.png'
+    }
+  }
+}
+```
+  - at battleScene.js copy queue.push right after faint()
+  - add battle.initiated = false under gasp.to('#overlappingDiv')
 ###### step III = sound effect
-19. music and sound effect
+20. music and sound effect
