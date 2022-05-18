@@ -418,10 +418,15 @@ class Monster extend Sprite{
  }
 }
 ```
-  - at battleScene.js add
+16. populating attacks
+  - at classes.js change class Sprites to  class Monster and adding attacks property 
+  - at battleScene.js populating attacks by adding:
 ```
 Sprite1.attacks.forEach(attack => {
-  // paste 
+  // paste button function
+  const button = document.createElement('button')
+  button.innetHTML = attack.name
+  document.querySelector('#attacksBox').append(button)
 })
 ```
 
