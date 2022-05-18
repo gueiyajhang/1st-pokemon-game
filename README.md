@@ -623,4 +623,4 @@ const monsters = {
   - at audio.js reference audio
   - at the end of index.js  let clicked = false then add eventListener play music when not click and clicked = true
   - after cancel animationframe stop playing audio by audio.Map.stop() then audio.initBattle.play() & audio.battle.play()
-  - assign audio right before each pecific action
+  - assign each audio under each pecific action
